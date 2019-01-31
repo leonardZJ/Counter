@@ -1,28 +1,27 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div>
+    <p>clicked:{{ count }}times，count 是 {{ evenOrOdd }}</p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+    <button @click="incrementIfOdd">increment if odd</button>
+    <button @click="incrementAsync">increment async</button>  
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import {mapState,mapGetters,mapActions} from 'vuex'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    ...mapState(['count']),
+    ...mapGetters(['evenOrOdd'])
+  },
+  methods: {
+    ...mapActions(['increment','decrement','incrementIfOdd','incrementAsync'])
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
